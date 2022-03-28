@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { Flex } from '@chakra-ui/react';
+import Qr from './components/qr/Qr';
+import NoQr from './components/no-qr/NoQr';
+import ButtonStack from './components/button-stack/ButtonStack';
+import ColorSwitcher from './components/color-switcher/ColorSwitcher';
+import Header from './components/header/Header';
 
 function App() {
+  const [qrValue, setQrValue] = useState();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Flex direction='column' alignItems='center' justifyContent='center' p={10} h='100vh'>
+      <ButtonStack>
+        <ColorSwitcher />
+      </ButtonStack>
+      <Header text='CEUB' />
+      {qrValue ?
+        <Qr qrValue={qrValue} />
+        :
+        <NoQr />
+      }
+    </Flex>
   );
 }
 
