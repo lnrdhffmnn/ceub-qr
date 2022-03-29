@@ -9,25 +9,35 @@ import BtnSettingsModal from './components/settings-modal/BtnSettingsModal';
 import SettingsModal from './components/settings-modal/SettingsModal';
 
 function App() {
-  const [qrValue, setQrValue] = useState();
+  const [ra, setRa] = useState('');
+  const [codigo, setCodigo] = useState('');
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
-    let ra = localStorage.getItem('ra');
-    if (ra) {
-      setQrValue(ra);
-    }
+    let _ra = localStorage.getItem('ra');
+    let _codigo = localStorage.getItem('cod');
+    if (_ra) setRa(_ra);
+    if (_codigo) setCodigo(_codigo)
   }, [])
 
-  function closeModal(ra) {
-    if (ra) {
-      setQrValue(ra);
-      localStorage.setItem('ra', ra);
+  function closeModal(_ra, _codigo) {
+    if (_ra) {
+      setRa(_ra);
+      localStorage.setItem('ra', _ra);
     } else {
-      setQrValue(null);
+      setRa('');
       localStorage.removeItem('ra');
     }
+
+    if (_codigo) {
+      setCodigo(_codigo);
+      localStorage.setItem('cod', _codigo);
+    } else {
+      setCodigo('');
+      localStorage.removeItem('cod');
+    }
+
     onClose();
   }
 
@@ -38,11 +48,17 @@ function App() {
         <ColorSwitcher />
         <BtnSettingsModal onClick={onOpen} />
       </ButtonStack>
-      <SettingsModal isOpen={isOpen} onClose={closeModal} />
-      {qrValue ?
-        <Qr qrValue={`${qrValue}|`} />
+      <SettingsModal
+        isOpen={isOpen}
+        onClose={onClose}
+        onCloseSave={closeModal}
+        curRa={ra}
+        curCod={codigo}
+      />
+      {ra ?
+        <Qr qrValue={`${ra}|${codigo}`} />
         :
-        <NoQr />
+        <NoQr onLinkClick={onOpen} />
       }
     </Flex>
   );

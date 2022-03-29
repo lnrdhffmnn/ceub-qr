@@ -1,20 +1,13 @@
 import React from 'react';
-import { Flex, Heading, useColorModeValue } from '@chakra-ui/react';
+import { Heading, Link, useColorModeValue } from '@chakra-ui/react';
 
-function NoQr() {
-  const flexBgColor = useColorModeValue('gray.100', 'gray.700');
+function NoQr({ onLinkClick }) {
+  const textColor = useColorModeValue('purple.600', 'purple.300');
 
   return (
-    <Flex
-      direction='column'
-      alignItems='center'
-      justifyContent='center'
-      p={10}
-      rounded={10}
-      bg={flexBgColor}
-    >
-      <Heading>Você precisa preencher seus dados.</Heading>
-    </Flex>
+    <Heading m={10}>
+      Você precisa <Link color={textColor} onClick={onLinkClick}>preencher</Link> seus dados.
+    </Heading>
   );
 }
 

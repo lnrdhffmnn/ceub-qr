@@ -1,11 +1,14 @@
 import React, { useRef, useState } from 'react';
-import { Button, FormControl, FormLabel, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, NumberInput, NumberInputField } from '@chakra-ui/react';
+import { Button, FormControl, FormLabel, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, NumberInput, NumberInputField, useColorModeValue } from '@chakra-ui/react';
 import { isMobile } from 'react-device-detect';
 
-function SettingsModal({ isOpen, onClose }) {
+function SettingsModal({ isOpen, onClose, onCloseSave, curRa, curCod }) {
   const [ra, setRa] = useState('');
+  const [codigo, setCodigo] = useState('');
 
   const inputFocus = useRef();
+
+  const inputBorderColor = useColorModeValue('purple.600', 'purple.300');
 
   return (
     <Modal
@@ -20,10 +23,26 @@ function SettingsModal({ isOpen, onClose }) {
         <ModalHeader>Configurações</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <FormControl>
+          <FormControl mb={3}>
             <FormLabel>RA</FormLabel>
-            <NumberInput min={0} variant='outline' onChange={(t) => { setRa(t) }}>
-              <NumberInputField ref={inputFocus} />
+            <NumberInput
+              min={0}
+              variant='outline'
+              focusBorderColor={inputBorderColor}
+              onChange={(t) => { setRa(t) }}
+            >
+              <NumberInputField placeholder={curRa} ref={inputFocus} />
+            </NumberInput>
+          </FormControl>
+          <FormControl>
+            <FormLabel>Código (opcional)</FormLabel>
+            <NumberInput
+              min={0}
+              variant='outline'
+              focusBorderColor={inputBorderColor}
+              onChange={(t) => { setCodigo(t) }}
+            >
+              <NumberInputField placeholder={curCod} />
             </NumberInput>
           </FormControl>
         </ModalBody>
@@ -32,9 +51,11 @@ function SettingsModal({ isOpen, onClose }) {
             colorScheme='whatsapp'
             type='submit'
             w='100vh'
+            mb={3}
             onClick={() => {
-              onClose(ra);
+              onCloseSave(ra, codigo);
               setRa('');
+              setCodigo('');
             }}
           >
             Salvar
