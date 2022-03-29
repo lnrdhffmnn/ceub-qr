@@ -8,6 +8,7 @@ function Qr({ qrValue }) {
       size={256}
       bgColor='#EDF2F7'
       includeMargin={true}
+      level='M'
       style={{
         borderRadius: 10
       }}

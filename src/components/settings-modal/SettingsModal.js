@@ -38,6 +38,7 @@ function SettingsModal({ isOpen, onClose, onCloseSave, curRa, curCod }) {
             <FormLabel>Código (opcional)</FormLabel>
             <NumberInput
               min={0}
+              clampValueOnBlur={false}
               variant='outline'
               focusBorderColor={inputBorderColor}
               onChange={(t) => { setCodigo(t) }}
