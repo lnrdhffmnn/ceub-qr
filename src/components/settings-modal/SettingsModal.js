@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, NumberInput, NumberInputField, useColorModeValue } from '@chakra-ui/react';
+import { Button, FormControl, FormLabel, HStack, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, NumberInput, NumberInputField, useColorModeValue } from '@chakra-ui/react';
 import { isMobile } from 'react-device-detect';
 import { Decoder } from '@nuintun/qrcode';
 
@@ -7,7 +7,7 @@ function SettingsModal({ isOpen, onClose, onCloseSave, curRa, curCod }) {
   const [ra, setRa] = useState('');
   const [codigo, setCodigo] = useState('');
 
-  const inputFocus = useRef();
+  const raInputRef = useRef();
   const fileInputRef = useRef();
 
   const inputBorderColor = useColorModeValue('purple.600', 'purple.300');
@@ -37,7 +37,7 @@ function SettingsModal({ isOpen, onClose, onCloseSave, curRa, curCod }) {
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      initialFocusRef={inputFocus}
+      initialFocusRef={raInputRef}
       isCentered
       {...isMobile ? { size: 'full' } : {}}
     >
@@ -55,7 +55,7 @@ function SettingsModal({ isOpen, onClose, onCloseSave, curRa, curCod }) {
               value={ra}
               onChange={(t) => { setRa(t) }}
             >
-              <NumberInputField placeholder={curRa} ref={inputFocus} />
+              <NumberInputField placeholder={curRa} ref={raInputRef} />
             </NumberInput>
           </FormControl>
           <FormControl>
@@ -80,28 +80,31 @@ function SettingsModal({ isOpen, onClose, onCloseSave, curRa, curCod }) {
             ref={fileInputRef}
             onChange={(e) => { handleFileInputChange(e.target.files[0]) }}
           />
-          <Button
-            colorScheme='purple'
+          <HStack
+            mb={2}
+            gap={2}
             w='100%'
-            mb={3}
-            mr={3}
-            onClick={() => { fileInputRef.current.click() }}
           >
-            Ler QR Code
-          </Button>
-          <Button
-            colorScheme='whatsapp'
-            type='submit'
-            w='100%'
-            mb={3}
-            onClick={() => {
-              onCloseSave(ra, codigo);
-              setRa('');
-              setCodigo('');
-            }}
-          >
-            Salvar
-          </Button>
+            <Button
+              colorScheme='purple'
+              w='100%'
+              onClick={() => { fileInputRef.current.click() }}
+            >
+              Ler QR Code
+            </Button>
+            <Button
+              colorScheme='whatsapp'
+              type='submit'
+              w='100%'
+              onClick={() => {
+                onCloseSave(ra, codigo);
+                setRa('');
+                setCodigo('');
+              }}
+            >
+              Salvar
+            </Button>
+          </HStack>
         </ModalFooter>
       </ModalContent>
     </Modal>
