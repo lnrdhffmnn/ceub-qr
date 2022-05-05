@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Button, FormControl, FormLabel, HStack, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, NumberInput, NumberInputField, useColorModeValue } from '@chakra-ui/react';
 import { isMobile } from 'react-device-detect';
 import { Decoder } from '@nuintun/qrcode';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Heading, Link, useColorModeValue } from '@chakra-ui/react';
 
 function NoQr({ onLinkClick }) {

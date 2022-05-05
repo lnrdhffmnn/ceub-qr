@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Flex, useDisclosure } from '@chakra-ui/react';
 import Qr from './components/qr/Qr';
 import NoQr from './components/no-qr/NoQr';

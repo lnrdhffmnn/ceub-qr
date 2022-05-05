@@ -1,4 +1,3 @@
-import React from 'react';
 import { Heading, useColorModeValue } from '@chakra-ui/react';
 
 function Header({ text }) {
