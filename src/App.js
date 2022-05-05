@@ -7,6 +7,7 @@ import ColorSwitcher from './components/color-switcher/ColorSwitcher';
 import Header from './components/header/Header';
 import BtnSettingsModal from './components/settings-modal/BtnSettingsModal';
 import SettingsModal from './components/settings-modal/SettingsModal';
+import BottomInfo from './components/bottom-info/BottomInfo';
 
 function App() {
   const [ra, setRa] = useState('');
@@ -15,29 +16,22 @@ function App() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
-    let _ra = localStorage.getItem('ra');
-    let _codigo = localStorage.getItem('cod');
-    if (_ra) setRa(_ra);
-    if (_codigo) setCodigo(_codigo)
-  }, [])
+    getLocalData();
+  }, []);
 
-  function closeModal(_ra, _codigo) {
-    if (_ra) {
-      setRa(_ra);
-      localStorage.setItem('ra', _ra);
-    } else {
-      setRa('');
-      localStorage.removeItem('ra');
-    }
+  function getLocalData() {
+    let _ra = localStorage.getItem('ra') || null;
+    let _codigo = localStorage.getItem('cod') || null;
+    setRa(_ra);
+    setCodigo(_codigo);
+  }
 
-    if (_codigo) {
-      setCodigo(_codigo);
-      localStorage.setItem('cod', _codigo);
-    } else {
-      setCodigo('');
-      localStorage.removeItem('cod');
-    }
+  function getRaCod() {
+    return `${ra || ''}|${codigo || ''}`
+  }
 
+  function closeModal() {
+    getLocalData();
     onClose();
   }
 
@@ -52,11 +46,12 @@ function App() {
         isOpen={isOpen}
         onClose={onClose}
         onCloseSave={closeModal}
-        curRa={ra}
-        curCod={codigo}
       />
       {ra ?
-        <Qr qrValue={`${ra}|${codigo}`} />
+        <>
+          <Qr qrValue={getRaCod()} />
+          <BottomInfo raCod={getRaCod()} />
+        </>
         :
         <NoQr onLinkClick={onOpen} />
       }

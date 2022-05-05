@@ -1,13 +1,11 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Button, FormControl, FormLabel, HStack, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, NumberInput, NumberInputField, useColorModeValue } from '@chakra-ui/react';
 import { isMobile } from 'react-device-detect';
 import { Decoder } from '@nuintun/qrcode';
 
-function SettingsModal({ isOpen, onClose, onCloseSave, curRa, curCod }) {
-  const [ra, setRa] = useState('');
-  const [codigo, setCodigo] = useState('');
-
+function SettingsModal({ isOpen, onClose, onCloseSave }) {
   const raInputRef = useRef();
+  const codInputRef = useRef();
   const fileInputRef = useRef();
 
   const inputBorderColor = useColorModeValue('purple.600', 'purple.300');
@@ -26,11 +24,17 @@ function SettingsModal({ isOpen, onClose, onCloseSave, curRa, curCod }) {
 
       let [_ra, _cod] = data.split(sep);
 
-      setRa(_ra);
-      setCodigo(_cod);
+      raInputRef.current.value = _ra;
+      codInputRef.current.value = _cod;
     } catch (err) {
       alert(err.message || 'Não foi possível ler o código');
     }
+  }
+
+  function handleSaveBtn() {
+    localStorage.setItem('ra', raInputRef.current.value);
+    localStorage.setItem('cod', codInputRef.current.value);
+    onCloseSave();
   }
 
   return (
@@ -52,10 +56,8 @@ function SettingsModal({ isOpen, onClose, onCloseSave, curRa, curCod }) {
               min={0}
               variant='outline'
               focusBorderColor={inputBorderColor}
-              value={ra}
-              onChange={(t) => { setRa(t) }}
             >
-              <NumberInputField placeholder={curRa} ref={raInputRef} />
+              <NumberInputField ref={raInputRef} />
             </NumberInput>
           </FormControl>
           <FormControl>
@@ -65,10 +67,8 @@ function SettingsModal({ isOpen, onClose, onCloseSave, curRa, curCod }) {
               clampValueOnBlur={false}
               variant='outline'
               focusBorderColor={inputBorderColor}
-              value={codigo}
-              onChange={(t) => { setCodigo(t) }}
             >
-              <NumberInputField placeholder={curCod} />
+              <NumberInputField ref={codInputRef} />
             </NumberInput>
           </FormControl>
         </ModalBody>
@@ -96,11 +96,7 @@ function SettingsModal({ isOpen, onClose, onCloseSave, curRa, curCod }) {
               colorScheme='whatsapp'
               type='submit'
               w='100%'
-              onClick={() => {
-                onCloseSave(ra, codigo);
-                setRa('');
-                setCodigo('');
-              }}
+              onClick={() => { handleSaveBtn() }}
             >
               Salvar
             </Button>
