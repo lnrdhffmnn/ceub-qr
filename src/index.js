@@ -1,15 +1,15 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom/client';
+import { HashRouter } from 'react-router-dom';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import { ChakraProvider } from '@chakra-ui/react';
 
-const root = createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ChakraProvider>
+    <HashRouter>
       <App />
-    </ChakraProvider>
+    </HashRouter>
   </React.StrictMode>
 );
 

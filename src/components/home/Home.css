@@ -1,0 +1,13 @@
+#qr {
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+#info {
+  position: absolute;
+  bottom: 0;
+  text-transform: uppercase;
+  font-family: monospace;
+  letter-spacing: 3px;
+  font-size: small;
+}

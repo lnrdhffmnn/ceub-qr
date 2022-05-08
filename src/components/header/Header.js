@@ -1,17 +1,13 @@
-import { Heading, useColorModeValue } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
+import { MdSettings } from 'react-icons/md';
+import './Header.css';
 
-function Header({ text }) {
-  const textColor = useColorModeValue('purple.600', 'purple.300');
-
+function Header() {
   return (
-    <Heading
-      color={textColor}
-      position='absolute'
-      top={8}
-      left={8}
-    >
-      {text}
-    </Heading>
+    <nav id='header'>
+      <Link to='/'><h1 id='title'>CEUB</h1></Link>
+      <Link to='/config'><MdSettings id='config' /></Link>
+    </nav>
   );
 }
 
