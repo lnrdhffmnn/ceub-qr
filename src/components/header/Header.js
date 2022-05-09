@@ -5,7 +5,7 @@ import './Header.css';
 function Header() {
   return (
     <nav id='header'>
-      <Link to='/'><h1 id='title'>CEUB</h1></Link>
+      <h1 id='title'><Link to='/'>CEUB</Link></h1>
       <Link to='/config'><MdSettings id='config' /></Link>
     </nav>
   );

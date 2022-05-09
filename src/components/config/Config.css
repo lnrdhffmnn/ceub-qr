@@ -1,0 +1,41 @@
+#config-form {
+  width: 100%;
+  max-width: 800px;
+}
+
+.config-input {
+  width: 100%;
+  margin: 5px 0;
+  border: 1px solid rgb(87, 80, 121);
+  border-radius: 10px;
+  background-color: rgb(57, 53, 77);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  font-size: .9rem;
+}
+
+.config-label {
+  text-align: left;
+  width: 100%;
+  font-weight: bold;
+}
+
+.config-btn {
+  font-weight: bold;
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+
+#input-ra {
+  margin-bottom: 10px;
+}
+
+#btn-save {
+  background-color: rgb(44, 179, 77);
+  margin-top: 20px;
+}
+
+#btn-qr {
+  background-color: #C00088;
+}
