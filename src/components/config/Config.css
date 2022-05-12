@@ -1,6 +1,6 @@
 #config-form {
   width: 100%;
-  max-width: 800px;
+  max-width: 600px;
 }
 
 .config-input {
@@ -33,9 +33,25 @@
 
 #btn-save {
   background-color: rgb(44, 179, 77);
-  margin-top: 20px;
 }
 
 #btn-qr {
   background-color: #C00088;
+}
+
+.btn-stack {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 450px) {
+  .btn-stack {
+    flex-direction: column-reverse;
+    gap: 0;
+    margin-top: 10px;
+  }
 }

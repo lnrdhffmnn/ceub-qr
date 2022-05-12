@@ -13,3 +13,8 @@ a {
 a:hover {
   text-decoration: underline dotted;
 }
+
+:focus {
+  outline: none;
+  border: 1px solid #C00088;
+}
