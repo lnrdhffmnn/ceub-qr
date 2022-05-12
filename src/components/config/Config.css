@@ -31,6 +31,10 @@
   margin-bottom: 10px;
 }
 
+#input-qr {
+  display: none;
+}
+
 #btn-save {
   background-color: rgb(44, 179, 77);
 }

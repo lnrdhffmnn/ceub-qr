@@ -12,13 +12,13 @@ function Header() {
     switch (location.pathname) {
       case '/config':
         setHeaderBtn(
-          <Link to='/'><MdClose className='header-btn' /></Link>
+          <Link to='/' className='header-btn' ><MdClose /></Link>
         );
         break;
 
       default:
         setHeaderBtn(
-          <Link to='/config'><MdSettings className='header-btn' /></Link>
+          <Link to='/config' className='header-btn' ><MdSettings /></Link>
         );
         break;
     }
