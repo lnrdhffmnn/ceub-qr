@@ -5,6 +5,11 @@
   box-sizing: border-box;
 }
 
+body {
+  user-select: none;
+  overscroll-behavior: contain;
+}
+
 a {
   color: inherit;
   text-decoration: none;
