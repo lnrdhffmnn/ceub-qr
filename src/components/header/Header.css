@@ -1,0 +1,15 @@
+#header {
+  width: 100%;
+}
+
+#title {
+  float: left;
+  font-size: 2rem;
+  color: #C00088;
+  text-shadow: 0px 0px 10px rgba(67, 5, 78, 0.5);
+}
+
+.header-btn {
+  float: right;
+  font-size: 2rem;
+}

@@ -1,17 +1,34 @@
-import { Heading, useColorModeValue } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { MdSettings, MdClose } from 'react-icons/md';
+import './Header.css';
 
-function Header({ text }) {
-  const textColor = useColorModeValue('purple.600', 'purple.300');
+function Header() {
+  const location = useLocation();
+
+  const [headerBtn, setHeaderBtn] = useState(<></>);
+
+  useEffect(() => {
+    switch (location.pathname) {
+      case '/config':
+        setHeaderBtn(
+          <Link to='/' className='header-btn' ><MdClose /></Link>
+        );
+        break;
+
+      default:
+        setHeaderBtn(
+          <Link to='/config' className='header-btn' ><MdSettings /></Link>
+        );
+        break;
+    }
+  }, [location]);
 
   return (
-    <Heading
-      color={textColor}
-      position='absolute'
-      top={8}
-      left={8}
-    >
-      {text}
-    </Heading>
+    <nav id='header'>
+      <h1 id='title'>CEUB</h1>
+      {headerBtn}
+    </nav>
   );
 }
 
