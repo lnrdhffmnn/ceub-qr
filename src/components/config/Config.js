@@ -52,9 +52,9 @@ function Config() {
   return (
     <div id='config-form'>
       <label htmlFor='input-ra' className='config-label'>RA</label>
-      <input type='number' id='input-ra' className='config-input' ref={inputRaRef} />
+      <input type='number' id='input-ra' className='config-input' ref={inputRaRef} readOnly />
       <label htmlFor='input-cod' className='config-label'>Código (opcional)</label>
-      <input type='number' id='input-cod' className='config-input' ref={inputCodRef} />
+      <input type='number' id='input-cod' className='config-input' ref={inputCodRef} readOnly />
       <input
         type='file'
         id='input-qr'
