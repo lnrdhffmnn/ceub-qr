@@ -1,3 +1,4 @@
+import { useRegisterSW } from "virtual:pwa-register/react";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/header/Header";
 import Home from "./pages/home/Home";
@@ -6,6 +7,10 @@ import NotFound from "./pages/404/404";
 import "./App.css";
 
 function App() {
+  useRegisterSW({
+    immediate: true
+  });
+
   return (
     <div id="app">
       <Header />
