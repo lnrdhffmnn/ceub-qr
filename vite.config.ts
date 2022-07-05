@@ -14,7 +14,7 @@ export default defineConfig({
     manifest: {
       name: "CEUB QR",
       display: "standalone",
-      theme_color: "#c00088",
+      theme_color: "#262335",
       background_color: "#ffffff",
       icons: [
         {
