@@ -1,3 +1,8 @@
+:root {
+  --ceub-primary: #c00088;
+  --ceub-white: rgba(255, 255, 255, 0.9);
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -17,9 +22,4 @@ a {
 
 a:hover {
   text-decoration: underline dotted;
-}
-
-input:focus {
-  outline: none;
-  border: 1px solid #C00088;
 }

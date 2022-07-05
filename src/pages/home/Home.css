@@ -12,11 +12,12 @@
   font-size: small;
 }
 
-.conteudo-erro {
+#conteudo {
   font-size: 1.8rem;
   max-width: 75%;
+  text-align: center;
 }
 
 .link-conteudo {
-  color: #C00088;
+  color: var(--ceub-primary);
 }
