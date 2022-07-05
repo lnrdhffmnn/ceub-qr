@@ -5,6 +5,9 @@ import { VitePWA } from "vite-plugin-pwa";
 // https://vitejs.dev/config/
 export default defineConfig({
   base: "/ceub-qr/",
+  build: {
+    outDir: "docs"
+  },
   plugins: [react(), VitePWA({
     registerType: "autoUpdate",
     includeAssets: ["assets/icons/*"],
